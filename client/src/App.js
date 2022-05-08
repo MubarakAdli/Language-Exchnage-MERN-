@@ -1,19 +1,18 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SigIn from './components/SigIn';
-import Test from './components/Test';
-
+import SignIn from './components/SignIn';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div className="App">
-     <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SigIn />} />
-          <Route path="/test" element={<Test />} />
-        </Routes>
-      </BrowserRouter> 
+      <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<SignIn />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }

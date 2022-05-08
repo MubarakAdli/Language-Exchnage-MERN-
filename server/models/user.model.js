@@ -1,14 +1,17 @@
-const mongoose=require("mongoose")
-const bcrypt = require('bcrypt');
+
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt")
+
+
 const UserSchema = new mongoose.Schema({
-    firstName: {
-      type: String,
-      required: [true, "First name is required"]
-    },
-    lastName: {
-      type: String,
-      required: [true, "Last name is required"]
-    },
+  firstName: {
+    type: String,
+    required: [true, "First name is required"]
+  },
+  lastName: {
+    type: String,
+    required: [true, "Last name is required"]
+  },
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -19,9 +22,10 @@ const UserSchema = new mongoose.Schema({
     },
 
     nativeLang: {
-        type: String,
-        required: [true, "Native Language is required"]
-      },
+      type: String,
+      required: [true, "Native Language is required"]
+    },
+
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -29,24 +33,34 @@ const UserSchema = new mongoose.Schema({
     }
   }, {timestamps: true});
 
-  
-UserSchema.virtual('confirm')
-.get( () => this._confirm )
-.set( value => this._confirm = value );
 
-UserSchema.pre('validate', function(next) {
-    if (this.password !== this.confirm) {
-      this.invalidate('confirm', 'Password must match confirm password');
+UserSchema.virtual("confirm")
+  .get(function(){
+      return this._confirm
+  })
+  .set(function(value){
+      this._confirm = value
+  })
+
+UserSchema.pre("validate", function(next){
+    if(this.password !== this.confirm){
+        this.invalidate("confirm", "Passwords must match")
     }
     next();
-  });
+})
 
-UserSchema.pre('save', function(next) {
-  bcrypt.hash(this.password, 10)
-    .then(hash => {
-      this.password = hash;
-      next();
-    });
-});
 
-module.exports=mongoose.model("User",UserSchema);
+UserSchema.pre("save", function(next){
+    bcrypt.hash(this.password, 10)
+        .then(hash=>{
+            this.password = hash
+            next()
+        })
+        .catch(err=>{
+            console.log("HASHING PASSWORD DIDNT WORK THO", err)
+            next()
+        })
+})
+
+
+module.exports = mongoose.model("User", UserSchema);

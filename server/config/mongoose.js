@@ -1,6 +1,8 @@
-const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/my_schema', {
+const mongoose = require('mongoose');
+const db_name = "may_loginreg"
+
+mongoose.connect(`mongodb://localhost/${db_name}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
