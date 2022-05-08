@@ -1,12 +1,13 @@
 import React from 'react'
 import LoginForm from './LoginForm'
-import RegForm from './RegForm'
+import Register from './Register'
+
 
 const SigIn = () => {
   return (
     <div className='row'>
         <div className='col'>
-            <RegForm></RegForm>
+            <Register></Register>
         </div>
 
         <div className='col'>
