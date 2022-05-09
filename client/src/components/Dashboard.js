@@ -36,10 +36,13 @@ const Dashboard = () => {
         <div>
             
             {loggedinuser? 
-            <div>
-                <h1>Welcome {loggedinuser.firstName}</h1>
-                <button onClick={logout}>Logout</button>
-            </div>
+            <nav class="navbar navbar-light bg-light justify-content-between">
+            
+              <button class="btn btn-outline-success" type="button">Main button</button>
+              <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+            
+          </nav>
+            
             
             
             
