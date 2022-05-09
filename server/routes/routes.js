@@ -9,4 +9,6 @@ module.exports = app=>{
     app.get("/api/users/loggedin",authenticate, Users.getLoggedInUser)
 
     app.get("/api/users/logout", Users.logout)
+    app.post("/api/addroom", room.add)
+
 }
