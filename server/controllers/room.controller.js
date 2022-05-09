@@ -1,51 +1,47 @@
-const { room } = require("../models/room.model");
+const {Room} = require("../models/room.model");
 
-module.exports.index = (request, response) => {
-  response.json({
-    message: "Hello World",
-  });
-};
 
-module.exports.createroom = (req, res) => {
-  room.create(req.body)
-    .then((room) => res.json(room))
-    .catch((err) => res.status(400).json(err));
-};
 
-module.exports.getAllrooms = (req, res) => {
-  room.find({})
-    .sort("dueDate")
-    .then((rooms) => res.json(rooms))
-    .catch((err) => res.status(400).json(err));
-};
+class RoomController {
 
-/* module.exports.getroom = (req, res) => {
-  const { id } = req.params;
-  Athlete.findOne({ _id: id })
-    .then((athlete) => res.json(athlete))
-    .catch((err) => res.status(400).json(err));
-}; */
+  getAll = (req, res) => {
+    Player.find({})
+      .then((rooms) => res.json(rooms))
+      .catch((err) => res.status(400).json(err));
+  };
+  
+  create(req, res) {
+    const {lang1,lang2,desc} = req.body;
+    Room.create({lang1,lang2,desc})
+      .then(newRoom => res.json(newRoom)
+      )
+      .catch(err => res.json(err));
+  }
 
-module.exports.deleteroom = (req, res) => {
-  const { id } = req.params;
-  room.deleteOne({
-    _id: id,
-  })
-    .then((room) => res.json(room))
-    .catch((err) => {
-      res.status(400).json(err);
-    });
-};
-
-module.exports.updateroom = (req, res) => {
-  const { id } = req.params;
-  room.findOneAndUpdate(
-    {
+  delete = (req, res) => {
+    const { id } = req.params;
+    Room.deleteOne({
       _id: id,
-    },
-    req.body,
-    { new: true, runValidators: true }
-  )
-    .then((updatedroom) => res.json(updatedroom))
-    .catch((err) => res.status(400).send(err));
-};
+    })
+      .then((rooms) => res.json(rooms))
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
+  update = (req, res) => {
+    const { id } = req.params;
+    Room.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      req.body,
+      { new: true }
+    )
+      .then((updatedRoom) => res.json(updatedRoom))
+      .catch((err) => res.status(400).send(err));
+  };
+
+}
+
+module.exports = new RoomController();
