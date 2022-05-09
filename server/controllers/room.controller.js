@@ -5,9 +5,9 @@ const {Room} = require("../models/room.model");
 class RoomController {
 
   getAll = (req, res) => {
-    Player.find({})
+    Room.find({})
       .then((rooms) => res.json(rooms))
-      .catch((err) => res.status(400).json(err));
+      .catch((err) => res.json(err));
   };
   
   create(req, res) {

@@ -13,4 +13,5 @@ module.exports = app=>{
 
     app.get("/api/users/logout", Users.logout)
     app.post("/api/addin", RoomController.create )
+    app.get('/api/rooms',RoomController.getAll)
 }
