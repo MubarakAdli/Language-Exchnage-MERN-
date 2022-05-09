@@ -48,8 +48,21 @@ const Dashboard = () => {
                 <button className="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
             </nav>
             <div>
-                {rooms ? rooms.map((room,inx)=>(
-                    <p>{room.lang1}</p>
+                {rooms ? rooms.filter(room => room.lang1 == loggedinuser.nativeLang || room.lang2 == loggedinuser.nativeLang).map((filteredroom,inx)=>(
+                    <>
+                    <div className='row'>
+                        <div className='col-2'>
+                    <div className="card mt-5 ml-5  " >
+                        
+                            <div className="card-body">
+                                <h5 className="card-title">Room {inx+1}</h5>
+                                <p className="card-text">{filteredroom.lang1} to {filteredroom.lang2}</p>
+                                <a href="#" className="btn btn-primary">Join Chat</a>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                        </>
                 )) : null}
             </div>
             </>
