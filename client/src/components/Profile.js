@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 
-
-const Dashboard = () => {
+const Profile = () => {
 
     const [loggedinuser, setloggedinuser] = useState(null)
     let navigate = useNavigate();
@@ -41,14 +39,21 @@ const Dashboard = () => {
                 <div>
 
                     {loggedinuser ?
-                        <div>
-                            <h1>Welcome  <Link to={"/profile"}>{loggedinuser.firstName}</Link></h1>
+                        <><div>
+                            <h1>Welcome {loggedinuser.firstName}</h1>
                             <button onClick={logout}>Logout</button>
                             {loggedinuser.admin ? <button>Add Room</button> : ''}
-
-                        </div>
-
-
+                        </div><div>
+                                <p>
+                                Name: {loggedinuser.firstName} {loggedinuser.lastName} 
+                                </p>
+                                <p>
+                                Email :{loggedinuser.email}
+                                </p>
+                                <p>
+                                    Native Language :{loggedinuser.nativeLang}
+                                </p>
+                            </div></>
 
 
                         :
@@ -63,4 +68,4 @@ const Dashboard = () => {
 };
 
 
-export default Dashboard;
+export default Profile;
