@@ -9,8 +9,8 @@ class UserController {
         const user = new User(req.body)
         user.save()
             .then(()=>{
-              res.cookie("usertoken", jwt.sign({_id: user._id}, secret), {httpOnly: true} )
-              .json({msg: "successfully created user", user: user})
+            res.cookie("usertoken", jwt.sign({_id: user._id}, secret), {httpOnly: true} )
+            .json({msg: "successfully created user", user: user})
             })
             .catch(err=> res.json(err))
     }

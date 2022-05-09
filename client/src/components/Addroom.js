@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const Addroom= () => {
     const [formInfo, setFormInfo] = useState({
-        firstLang:"",
-        secondLang:"",
+        lang1:"",
+        lang2:"",
         desc:""
     })
 
@@ -25,7 +25,7 @@ const Addroom= () => {
 
     const adding = (e)=>{
         e.preventDefault();
-        axios.post('http://localhost:8000/api/addroom', formInfo, {withCredentials:true})
+        axios.post('http://localhost:8000/api/addin', formInfo)
             .then(res=>{
                 console.log(res)
                 if(res.data.errors){
@@ -47,22 +47,19 @@ const Addroom= () => {
                 <div className="form-group">
                     <label>First language </label>
                     <input type="text" className="form-control" name="lang1" onChange= {changehandler} />
-                    {errors.username? <p className="text-danger">{errors.firstName.message}</p>: ""}
                 </div>
 
                 <div className="form-group">
-                    <label>Last Name</label>
+                    <label>Second Language</label>
                     <input type="text" className="form-control" name="lang2" onChange= {changehandler} />
-                    {errors.username? <p className="text-danger">{errors.lastName.message}</p>: ""}
                 </div>
 
                 <div className="form-group">
-                    <label>Email</label>
+                    <label>Description</label>
                     <input type="text" className="form-control" name="desc" onChange= {changehandler}/>
-                    {errors.email? <p className="text-danger">{errors.email.message}</p>: ""}
                 </div>
                 
-                <input type="submit" value="Register" className="btn btn-success" />
+                <input type="submit" value="Register" className="btn btn-success"/>
 
             </form>
         </div>
