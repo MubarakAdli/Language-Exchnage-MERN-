@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 
 const Profile = () => {
 
@@ -53,7 +55,7 @@ const Profile = () => {
                                 <p>
                                     Native Language :{loggedinuser.nativeLang}
                                 </p>
-                            </div></>
+                                <Link to={'/Edit'}>Edit profile</Link>                            </div></>
 
 
                         :

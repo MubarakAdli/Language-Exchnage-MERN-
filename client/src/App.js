@@ -4,6 +4,8 @@ import SignIn from './components/SignIn';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import Addin from './components/Addin';
+import Edit from './components/Edit';
+
 import React from 'react';
 
 
@@ -17,6 +19,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/Addin" element={<Addin />}></Route>
+      <Route path="/Edit" element={<Edit />}></Route>
+
       </Routes>
       </BrowserRouter>
     </div>
