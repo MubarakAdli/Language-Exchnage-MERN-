@@ -6,11 +6,13 @@ const bcrypt = require("bcrypt")
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: [true, "First name is required"]
+    required: [true, "First name is required"],
+    minlength: [3, "First Name must be at least 3 characters!"],
   },
   lastName: {
     type: String,
-    required: [true, "Last name is required"]
+    required: [true, "Last name is required"],
+    minlength: [3, "Last Name must be at least 3 characters!"],
   },
     email: {
       type: String,
@@ -23,7 +25,8 @@ const UserSchema = new mongoose.Schema({
 
     nativeLang: {
       type: String,
-      required: [true, "Native Language is required"]
+      required: [true, "Native Language is required"],
+      minlength: [3, "Native language must be at least 3 characters!"],
     },
 
     admin: {
