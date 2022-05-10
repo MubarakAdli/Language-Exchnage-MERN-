@@ -1,21 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 
 const Dashboard = () => {
 
     const [loggedinuser, setloggedinuser] = useState(null)
     const [rooms,setRooms] = useState([])
     let navigate = useNavigate();
+    const [loaded, setLoaded] = useState(false)
 
-    useEffect(()=>{
-        axios.get("http://localhost:8000/api/users/loggedin", {withCredentials:true})
-            .then(res=>{
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/users/loggedin", { withCredentials: true })
+            .then(res => {
                 console.log(res)
                 setloggedinuser(res.data.user)
+                setLoaded(true)
             })
-            .catch(err=>{
-                console.log("errrrrrrr",err)
+            .catch(err => {
+                console.log("errrrrrrr", err)
                 navigate("/")
             })
     }, [])
@@ -25,13 +29,13 @@ const Dashboard = () => {
         .catch(err => console.log(err))
     },[])
 
-    const logout = (e)=>{
-        axios.get("http://localhost:8000/api/users/logout", {withCredentials:true})
-            .then(res=>{
+    const logout = (e) => {
+        axios.get("http://localhost:8000/api/users/logout", { withCredentials: true })
+            .then(res => {
                 console.log(res)
                 navigate("/")
             })
-            .catch(err=>{
+            .catch(err => {
                 console.log(err)
             })
     }

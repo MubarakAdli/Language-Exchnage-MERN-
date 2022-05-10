@@ -3,6 +3,7 @@ const Users = require("../controllers/user.controller");
 const RoomController = require("../controllers/room.controller");
 
 
+
 const {authenticate } = require("../config/jwt");
 const rooms = require("../controllers/room.controller"); 
 module.exports = app=>{
@@ -14,4 +15,7 @@ module.exports = app=>{
     app.get("/api/users/logout", Users.logout)
     app.post("/api/addin", RoomController.create )
     app.get('/api/rooms',RoomController.getAll)
+    app.put('/api/users/:id', Users.EditUser);
+
+
 }

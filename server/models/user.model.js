@@ -26,6 +26,12 @@ const UserSchema = new mongoose.Schema({
       required: [true, "Native Language is required"]
     },
 
+    admin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -34,17 +40,13 @@ const UserSchema = new mongoose.Schema({
   }, {timestamps: true});
 
 
-UserSchema.virtual("confirm")
-  .get(function(){
-      return this._confirm
-  })
-  .set(function(value){
-      this._confirm = value
-  })
+UserSchema.virtual("confirmPass")
+  .get(()=> this._confirmPass)
+  .set((value)=>this._confirmPass = value)
 
 UserSchema.pre("validate", function(next){
-    if(this.password !== this.confirm){
-        this.invalidate("confirm", "Passwords must match")
+    if(this.password !== this.confirmPass){
+        this.invalidate("confirmPass", "Passwords must match")
     }
     next();
 })
