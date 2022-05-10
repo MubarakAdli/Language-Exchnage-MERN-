@@ -1,76 +1,96 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
     
-const Update = (props) => {
-    const { id } = useParams();
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [nativeLang, setNativelang] = useState('');
+const Edit = (props) => {
+    const [loggedinuser, setloggedinuser] = useState(null)
+    const [loaded, setLoaded] = useState(false)
+    const[firstName , setFirstName]=useState("")
+    const[lastName , setLastName]=useState("")
+    const[nativeLang , setNativeLang]=useState("")
+    const [errors, setErrors] = useState()
+
+
+
     
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users/loggedin') 
+        axios.get("http://localhost:8000/api/users/loggedin", { withCredentials: true })
             .then(res => {
-                setFirstName(res.data.firstName);
-                setLastName(res.data.lastName);
-                setEmail(res.data.email);
-                setNativelang(res.data.nativeLang);
+                console.log(res)
+                setFirstName(res.data.user.firstName)
+                setLastName(res.data.user.lastName)
+                setNativeLang(res.data.user.nativeLang)
 
 
-
+                setLoaded(true)
             })
-    }, []);
+            .catch(err => {
+                console.log("errrrrrrr", err)
+                navigate("/")
+            })
+    }, [])
+
+    let navigate = useNavigate();
+
     
-    const updatePerson = e => {
+    // const changehandler = (e)=>{
+    //     setFormInfo({
+    //         ...formInfo,
+    //         [e.target.name]:e.target.value
+    //     })
+    // }
+
+    const updatePerson = (e)=>{
         e.preventDefault();
-        axios.put('http://localhost:8000/api/users/loggedin', {
-            firstName,
-            lastName,
-            email,
-            nativeLang
-        })
-            .then(res => console.log(res))
-            .catch(err => console.error(err));
+        axios.put('http://localhost:8000/api/users/loggedin', {firstName,lastName,nativeLang},{ withCredentials: true })
+            .then(res=>{
+                navigate("/profile");
+            })
+            .catch(err=>{
+                console.log(err)
+            })
     }
+
     
     return (
         <div>
-            <h1>Update a Person</h1>
+            <h1>Edit Profile</h1>
+            {loaded && 
             <form onSubmit={updatePerson}>
                 <p>
-                    <label>First Name</label><br />
+                    <label>First Name:</label><br />
                     <input type="text" 
-                    name="firstName" 
+                    name="firstName"
                     value={firstName} 
-                    onChange={(e) => { setFirstName(e.target.value) }} />
+                    onChange={e=> setFirstName(e.target.value)}
+                    
+                     />
                 </p>
                 <p>
-                    <label>Last Name</label><br />
+                    <label>Last Name:</label><br />
                     <input type="text" 
                     name="lastName"
-                    value={lastName} 
-                    onChange={(e) => { setLastName(e.target.value) }} />
+                    value={lastName}
+                    onChange={e=> setLastName(e.target.value)}
+
+
+                     />
                 </p>
                 <p>
-                    <label>Email</label><br />
-                    <input type="text" 
-                    name="email"
-                    value={email} 
-                    onChange={(e) => { setEmail(e.target.value) }} />
-                </p>
-                <p>
-                    <label>Native lang</label><br />
+                    <label>Native lang:</label><br />
                     <input type="text" 
                     name="nativeLang"
-                    value={nativeLang} 
-                    onChange={(e) => { setNativelang(e.target.value) }} />
+                    value={nativeLang}
+                    onChange={e=> setNativeLang(e.target.value)}
+
+                     />
                 </p>
                 <input type="submit" />
             </form>
+            }
         </div>
     )
 }
     
-export default Update;
+export default Edit;

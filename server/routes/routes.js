@@ -12,10 +12,11 @@ module.exports = app=>{
 
     app.get("/api/users/loggedin",authenticate, Users.getLoggedInUser)
 
+
     app.get("/api/users/logout", Users.logout)
     app.post("/api/addin", RoomController.create )
     app.get('/api/rooms',RoomController.getAll)
-    app.put('/api/users/:id', Users.EditUser);
+    app.put('/api/users/loggedin',authenticate, Users.EditUser);
 
 
 }
