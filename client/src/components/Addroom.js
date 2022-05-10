@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import '../App.css';
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+
 
 
 
@@ -14,9 +16,38 @@ const Addroom = () => {
     desc: "",
   });
 
+  const [loggedinuser, setloggedinuser] = useState({})
+  let navigate = useNavigate();
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/users/loggedin", { withCredentials: true })
+        .then(res => {
+            console.log(res.data.user)
+            setloggedinuser(res.data.user)
+            console.log(loggedinuser)
+            setLoaded(true)
+        })
+        .catch(err => {
+            console.log("errrrrrrr", err)
+            navigate("/")
+        })
+}, [])
+
+const logout = (e) => {
+  axios.get("http://localhost:8000/api/users/logout", { withCredentials: true })
+      .then(res => {
+          console.log(res)
+          navigate("/")
+      })
+      .catch(err => {
+          console.log(err)
+      })
+}
+
   const [errors, setErrors] = useState({});
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
   const changehandler = (e) => {
     setFormInfo({
@@ -44,26 +75,46 @@ const Addroom = () => {
 
 
   return (
+    <>
+    <nav className="navbar navbar-light bg-light justify-content-around">
 
-<div class="demo form-bg">
-    <div class="container-fluid" >
-        <div class="row  " >
+
+                            <h4  >Welcome  {loggedinuser.lastName} {loggedinuser.lastName}</h4>
+
+
+
+                            <div className='d-flex justify-content'>
+                                <button className="btn btn-outline-secondary me-5" type="button">
+                                    <a className="text-dark text-decoration-none " href='/profile' >Profile</a></button>
+                                <button onClick={logout} className="text-dark btn btn-sm btn-outline-secondary ml-3 " type="button">Logout</button>
+                                {loggedinuser.admin ? <button className="text-dark btn btn-outline-secondary ml-3" type="button">
+                                <a className="text-dark text-decoration-none " href='/Addin' >Add Room</a></button> : ""}
+                            </div>
+                        </nav>
+
+<div className="demo form-bg">
+    <div className="container-fluid" >
+        <div className="row  " >
             <div className="margin ">
-                <div class="col-md col-md">
+                <div className="col-md col-md">
                     <form onSubmit={adding}>
-                        <div class="form-group d-flex flex-column" >
-                        <h1 class="heading">Add a room</h1>
+                        <div className="form-group d-flex flex-column" >
+                        <h1 className="heading">Add a room</h1>
                     
                             <TextField className="mb-3 " id="standard-basic" label="First Language" name="lang1"    onChange={changehandler} variant="standard" />
 
                             <TextField  className="mb-3" id="standard-basic" label="Second Language" name="lang2"    onChange={changehandler} variant="standard" />
 
                             <TextField className="mb-3" id="standard-basic" label="Description" name="desc"    onChange={changehandler} variant="standard" />
-
-                            <Button variant="contained" type="submit">
+                            <Box sx={{ '& button': { m: 1 } }}>
+                            <Button variant="contained"  type="submit">
                                 Add
                             </Button>
-                    
+                            <Button variant="contained" color="success">
+                            <a className="text-white text-decoration-none " href='/dashboard' >Cancel</a>
+                          </Button>
+                          </Box>
+                            
                         </div>
                     </form>
             </div>
@@ -71,6 +122,7 @@ const Addroom = () => {
     </div>
 </div>
 </div>
+</>
 );
 };
 

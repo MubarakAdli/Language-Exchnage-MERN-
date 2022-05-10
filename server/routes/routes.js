@@ -15,6 +15,7 @@ module.exports = app=>{
 
     app.get("/api/users/logout", Users.logout)
     app.post("/api/addin", RoomController.create )
+    app.delete("/api/delete/:id", RoomController.delete )
     app.get('/api/rooms',RoomController.getAll)
     app.put('/api/users/loggedin',authenticate, Users.EditUser);
 

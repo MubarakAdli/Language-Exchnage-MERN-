@@ -18,16 +18,11 @@ class RoomController {
       .catch(err => res.json(err));
   }
 
-  delete = (req, res) => {
-    const { id } = req.params;
-    Room.deleteOne({
-      _id: id,
-    })
-      .then((rooms) => res.json(rooms))
-      .catch((err) => {
-        res.status(400).json(err);
-      });
-  };
+  delete  (request, response) {
+    Room.deleteOne({ _id: request.params.id })
+        .then(deleteConfirmation => response.json(deleteConfirmation))
+        .catch(err => response.json(err))
+}
 
   update = (req, res) => {
     const { id } = req.params;
