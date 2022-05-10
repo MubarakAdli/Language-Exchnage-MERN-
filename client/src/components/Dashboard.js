@@ -86,7 +86,7 @@ const Dashboard = () => {
                                                     <p className="card-text">{filteredroom.lang1} to {filteredroom.lang2}</p>
                                                     <p className="card-text">{filteredroom.desc}</p>
                                                     {loggedinuser.admin ? <div className='d-flex justify-content'><button className="text-white btn btn-primary btn-outline-primary ml-3" type="button">
-                                                        Edit</button><button onClick={deleteroom(filteredroom._id)} className="text-white btn btn-danger btn-outline-danger ml-3" type="button">
+                                                        Edit</button><button onClick={deleteroom(rooms._id)} className="text-white btn btn-danger btn-outline-danger ml-3" type="button">
                                                             Delete</button></div> : <a href="#" className="btn btn-primary">Join Chat</a>}
 
                                                 </div>
