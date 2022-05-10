@@ -1,70 +1,77 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import '../App.css';
 import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 
-const Addroom= () => {
-    const [formInfo, setFormInfo] = useState({
-        lang1:"",
-        lang2:"",
-        desc:""
-    })
 
-    const [errors, setErrors] = useState({
+const Addroom = () => {
+  const [formInfo, setFormInfo] = useState({
+    lang1: "",
+    lang2: "",
+    desc: "",
+  });
 
-    })
+  const [errors, setErrors] = useState({});
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
 
-    const changehandler= (e)=>{
-        setFormInfo({
-            ...formInfo,
-            [e.target.name]:e.target.value
-        })
-    }
+  const changehandler = (e) => {
+    setFormInfo({
+      ...formInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const adding = (e)=>{
-        e.preventDefault();
-        axios.post('http://localhost:8000/api/addin', formInfo)
-            .then(res=>{
-                console.log(res)
-                if(res.data.errors){
-                    setErrors(res.data.errors)
-                }else{
-                    navigate("/dashboard")
-                }
-            })
-            .catch(err=>{
-                console.log(err)
-            })
-    }
+  const adding = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8000/api/addin", formInfo)
+      .then((res) => {
+        console.log(res);
+        if (res.data.errors) {
+          setErrors(res.data.errors);
+        } else {
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 
-    return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit= {adding}>
-                <div className="form-group">
-                    <label>First language </label>
-                    <input type="text" className="form-control" name="lang1" onChange= {changehandler} />
-                </div>
+  return (
 
-                <div className="form-group">
-                    <label>Second Language</label>
-                    <input type="text" className="form-control" name="lang2" onChange= {changehandler} />
-                </div>
+<div class="demo form-bg">
+    <div class="container-fluid" >
+        <div class="row  " >
+            <div className="margin ">
+                <div class="col-md col-md">
+                    <form onSubmit={adding}>
+                        <div class="form-group d-flex flex-column" >
+                        <h1 class="heading">Add a room</h1>
+                    
+                            <TextField className="mb-3 " id="standard-basic" label="First Language" name="lang1"    onChange={changehandler} variant="standard" />
 
-                <div className="form-group">
-                    <label>Description</label>
-                    <input type="text" className="form-control" name="desc" onChange= {changehandler}/>
-                </div>
-                
-                <input type="submit" value="Register" className="btn btn-success"/>
+                            <TextField  className="mb-3" id="standard-basic" label="Second Language" name="lang2"    onChange={changehandler} variant="standard" />
 
-            </form>
+                            <TextField className="mb-3" id="standard-basic" label="Description" name="desc"    onChange={changehandler} variant="standard" />
+
+                            <Button variant="contained" type="submit">
+                                Add
+                            </Button>
+                    
+                        </div>
+                    </form>
+            </div>
         </div>
-    );
+    </div>
+</div>
+</div>
+);
 };
-
 
 export default Addroom;
