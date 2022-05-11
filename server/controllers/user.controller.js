@@ -14,8 +14,9 @@ class UserController {
     const { firstName, lastName, email, nativeLang, password, confirm } =
       req.body;
 
+      
 
-    console.log(users)
+    // console.log(users)
 
       // console.log("ay eshi")
       User.create({ firstName, lastName, email, nativeLang, password, confirmPass: confirm, admin: users.length === 0 })
@@ -65,6 +66,8 @@ class UserController {
       maxAge: 0
     }).json({ msg: "ok" })
   }
+
+
     EditUser(req,res)  {
       const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
       console.log(decodedJWT)

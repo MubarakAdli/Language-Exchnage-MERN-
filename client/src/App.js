@@ -7,7 +7,7 @@ import Addin from './components/Addin';
 import Edit from './components/Edit';
 
 import React from 'react';
-import AdminRoute from './components/AdminRoute';
+// import AdminRoute from './components/AdminRoute';
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route path="/profile" element={<Profile />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/" element={<AdminRoute />} />
+      {/* <Route path="/Addin" element={<AdminRoute />} /> */}
       <Route path="/Addin" element={<Addin />}></Route>
       <Route path="/Edit" element={<Edit />}></Route>
 

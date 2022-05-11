@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import '../App.css';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -65,28 +67,29 @@ const Profile = () => {
                                         <a className="text-dark text-decoration-none " href='/Addin' >Add Room</a></button> : ""}
                                 </div>
                             </nav>
-                            <div>
-                                <Container minWidth="sm " maxWidth="lg" sx={{ width: "40%" }}>
-                                    <Box sx={{ flexGrow: 1 }} style={{ margin: "100px" }}>
+                            <div className="demo form-bg-4">
+                                <Container minWidth="sm " maxWidth="lg" minHeight="sm " maxHeight="lg" sx={{ width: "40%", height: "40%" }}>
+                                    <Box sx={{ flexGrow: 1 }} style={{ marginBottom:"200px",marginLeft:"150px" }}>
                                         <Grid container spacing={2}>
                                             <Grid item xs={8} >
-                                                <Item style={{ backgroundColor: "red", color: "white" }}
-                                                >Name: {loggedinuser.firstName} {loggedinuser.lastName} </Item>
+                                                <Item style={{ backgroundColor: "blue", color: "white" }}
+                                                >{loggedinuser.firstName} {loggedinuser.lastName} </Item>
                                             </Grid>
                                             <Grid item xs={8}>
-                                                <Item>Email: {loggedinuser.email} </Item>
+                                                <Item style={{ backgroundColor: "blue", color: "white" }}> {loggedinuser.email} </Item>
                                             </Grid>
                                             <Grid item xs={8}>
-                                                <Item>Native Language: {loggedinuser.nativeLang} </Item>
+                                                <Item style={{ backgroundColor: "blue", color: "white" }}>{loggedinuser.nativeLang} </Item>
                                             </Grid>
                                             <Grid item xs={8}>
-                                            <Link to={'/Edit'}>Edit profile</Link>  
+                                                <Button variant="contained" color="success">
+                                                    <Link to={'/Edit'} style={{ color: "white" }}>eDIT pROFILE</Link></Button>
                                             </Grid>
                                         </Grid>
                                     </Box>
                                 </Container>
-                                                          
-                                </div></>
+
+                            </div></>
                         :
                         <h1>Please log in first</h1>}
                 </div>}

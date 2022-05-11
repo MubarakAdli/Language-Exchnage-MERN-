@@ -17,6 +17,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use(cookies());
+// app.use(express.static("images"))
 
 
 //require our mongoose config file and tell it about the db name

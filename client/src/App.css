@@ -52,14 +52,58 @@ margin-bottom: 100px;
 .form-bg:before{
   content: "";
   width: 100%;
-  height: 150%;
+  height: 300%;
   display: block;
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(#2cd0cb,#a280c1);
+  /* background: linear-gradient(#2cd0cb,#a280c1); */
+  background: linear-gradient(white,black);
   opacity: 0.95;
 }
+
+.form-bg-4{
+  /* content: "";
+  width: 100%;
+  height: 80%;
+  display: block;
+  position: absolute;
+  
+  left: 0; */
+  /* background: linear-gradient(#2cd0cb,#a280c1); */
+  background: linear-gradient(white,black);
+  top: 0;
+  left: 0;
+  
+  opacity: 0.95;
+}
+
+.form-bg-2{
+  content: "";
+  width: 100%;
+  /* height: 150%; */
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(#2cd0cb,#a280c1); 
+  /* background: linear-gradient(white,black); */
+  opacity: 0.95;
+}
+
+.form-bg-3{
+  content: "";
+  width: 100%;
+  /* height: 50%; */
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background: linear-gradient(white,black); */
+  opacity: 0.95;
+}
+
+
 
 form{
   margin: 5% 0;
@@ -76,6 +120,8 @@ form .heading{
   text-transform: uppercase;
   margin-left: -20px;
 }
+
+
 
 form .form-group{
   padding: 30px;
