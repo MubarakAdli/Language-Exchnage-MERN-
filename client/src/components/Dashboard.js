@@ -67,12 +67,17 @@ return(
                     <>
                         <nav className="navbar navbar-light bg-light justify-content-around">
                             <h4  >Welcome {loggedinuser.firstName} {loggedinuser.lastName}</h4>
+                            <button className="btn btn-outline-secondary me-5" type="button">
+                                    <a className="text-dark text-decoration-none " href='/AboutUs' >About Us</a></button>
+
                             <div className='d-flex justify-content'>
                                 <button className="btn btn-outline-secondary me-5" type="button">
                                     <a className="text-dark text-decoration-none " href='/profile' >Profile</a></button>
                                 <button onClick={logout} className="text-dark btn btn-sm btn-outline-secondary ml-3 " type="button">Logout</button>
                                 {loggedinuser.admin ? <button className="text-dark btn btn-outline-secondary ml-3" type="button">
-                                    <a className="text-dark text-decoration-none " href='/Addin' >Add Room</a></button> : ""}
+                                    <a className="text-dark text-decoration-none " href='/Addin' >Add Room</a></button> : ""
+                                    }
+
                             </div>
                         </nav>
 
@@ -86,7 +91,9 @@ return(
                                                 <p className="card-text">{filteredroom.lang1} to {filteredroom.lang2}</p>
                                                 <p className="card-text">{filteredroom.desc}</p>
                                                 {loggedinuser.admin ?  <DeleteBut roomId={filteredroom._id} successCallback={()=>removeFromDom(filteredroom._id)}/>
-                                                     : <a href="#" className="btn btn-primary">Join Chat</a>}
+                                                     : <a href="#" className="btn btn-primary">Join Chat</a>
+                                                     
+                                                     }
                                             </div>
                                         </div>
                                     </>
@@ -100,7 +107,7 @@ return(
                                                 <p className="card-text">{filteredroom.lang1} to {filteredroom.lang2}</p>
                                                 <p className="card-text">{filteredroom.desc}</p>
                                                 {loggedinuser.admin ? <DeleteBut roomId={filteredroom._id} successCallback={()=>removeFromDom(filteredroom._id)}/>
-                                                     : <button onClick={() => handleChat(filteredroom._id)}
+                                                        : <button onClick={() => handleChat(filteredroom._id)}
  className="btn btn-primary">Join Chat</button>}
                                             </div>
                                         </div>

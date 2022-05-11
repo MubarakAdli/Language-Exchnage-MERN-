@@ -153,7 +153,7 @@ const Chat = ({}) => {
         <div className='d-flex  flex-column'>
 
 <button  className='btn btn-lg btn-secondary '>
-<a href='/dashboard' className='text-warning'>
+<a href='/Dashboard' className='text-warning'>
 Leave Room
 </a>
 </button>

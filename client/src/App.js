@@ -11,6 +11,7 @@ import { createContext, useState, useEffect } from 'react'
 
 
 import React from 'react';
+import Us from './components/Us';
 // import AdminRoute from './components/AdminRoute';
 
 export const UserContext = createContext()
@@ -37,6 +38,8 @@ function App() {
       <Route path="/Addin" element={<Addin />}></Route>
       <Route path="/Edit" element={<Edit />}></Route>
       <Route path="/chat/:id" element={<Chatme />}></Route>
+      <Route path="/AboutUs" element={<Us />}></Route>
+
 
       </Routes>
       </BrowserRouter>
