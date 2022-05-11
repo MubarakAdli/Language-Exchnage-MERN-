@@ -58,8 +58,10 @@ https://trello.com/b/IswN3k9M/language-exchange
 10. JavaScript.
 11. Authorization and Authentication using json web tokens
 # Layout:
-![This is an image](./pictures/picture%201.PNG)
-![This is an image](./pictures/picture%202.PNG)
-![This is an image](./pictures/picture%203.PNG)
-![This is an image](./pictures/picture%204.PNG)
-![This is an image](./pictures/picture%205.PNG)
+![This is an image](./project%20images/login.PNG)
+![This is an image](./project%20images/main1.PNG)
+![This is an image](./project%20images/main2.PNG)
+![This is an image](./project%20images/profile.PNG)
+![This is an image](./project%20images/edit%20profile.PNG)
+![This is an image](./project%20images/add%20room.PNG)
+![This is an image](./project%20images/chat.png)
