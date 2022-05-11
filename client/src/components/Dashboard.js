@@ -7,7 +7,7 @@ import DeleteBut from './DeleteBut';
 
 const Dashboard = () => {
 
-    const [loggedinuser, setloggedinuser] = useState(null)
+    const [loggedinuser, setloggedinuser] = useState({})
     const [rooms, setRooms] = useState([])
     let navigate = useNavigate();
     const [loaded, setLoaded] = useState(false)
@@ -61,7 +61,7 @@ const Dashboard = () => {
         navigate('/chat/'+id)
     
     }
-
+return(
         <>
             <div>
                     <>
@@ -94,13 +94,14 @@ const Dashboard = () => {
                                 {rooms ? rooms.filter(room => room.lang1 == loggedinuser.nativeLang || room.lang2 == loggedinuser.nativeLang).map((filteredroom, inx) => (
                                     <>
                                     
-                                        <div className="card mt-5 ml-5 w-100 col-3  " >
+                                    <div className="card mt-5 ml-5 w-100 col-3  " >
                                             <div className="card-body ">
                                                 <h5 className="card-title">Room {inx + 1}</h5>
                                                 <p className="card-text">{filteredroom.lang1} to {filteredroom.lang2}</p>
                                                 <p className="card-text">{filteredroom.desc}</p>
                                                 {loggedinuser.admin ? <DeleteBut roomId={filteredroom._id} successCallback={()=>removeFromDom(filteredroom._id)}/>
-                                                     : <a href="#" className="btn btn-primary">Join Chat</a>}
+                                                     : <button onClick={() => handleChat(filteredroom._id)}
+ className="btn btn-primary">Join Chat</button>}
                                             </div>
                                         </div>
                                     </>
@@ -109,11 +110,8 @@ const Dashboard = () => {
                     </>
                     :
                     <p></p>
-                }
+                
             </div>
         </>
     );
-};
-
-
-export default Dashboard;
+};export default Dashboard;
