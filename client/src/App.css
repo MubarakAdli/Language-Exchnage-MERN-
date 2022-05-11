@@ -52,7 +52,7 @@ margin-bottom: 100px;
 .form-bg:before{
   content: "";
   width: 100%;
-  height: 150%;
+  height:180%;
   display: block;
   position: absolute;
   top: 0;
@@ -167,5 +167,24 @@ form .form-footer a:hover{
   margin: 0 auto;
 }
 
+#messages {
+  height: 200px;
+  background-color: #eee;
+  font-size: 12px;
+  padding: 20px;
+}
 
-/* CSS Document */
+input {
+  width: 100%;
+}
+
+#submit {
+  width: 9%;
+}
+.col-md-8{
+  max-height: 300px;
+  min-height: fit-content;
+}
+ul {
+  list-style-type: none;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { useInRouterContext, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 
@@ -10,6 +10,12 @@ const Dashboard = () => {
     const [rooms,setRooms] = useState([])
     let navigate = useNavigate();
     const [loaded, setLoaded] = useState(false)
+
+
+
+
+
+
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/users/loggedin", { withCredentials: true })
@@ -40,6 +46,9 @@ const Dashboard = () => {
             })
     }
     
+    const handleChat=(id)=>{
+        navigate('/chat/'+id)
+    }
     
     return (
         <>
@@ -61,7 +70,9 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <h5 className="card-title">Room {inx+1}</h5>
                                 <p className="card-text">{filteredroom.lang1} to {filteredroom.lang2}</p>
-                                <a href="#" className="btn btn-primary">Join Chat</a>
+                                <button  onClick={()=>handleChat(filteredroom._id) }
+
+                            className="btn btn-primary">Join Chat</button>
                             </div>
                         </div>
                         </div>

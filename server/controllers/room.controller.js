@@ -29,6 +29,13 @@ class RoomController {
       });
   };
 
+  getRoom = (request,response) => {
+    const { id } = request.params.id;
+    Author.findOne({_id:id})
+    .then(author => response.json(author))
+    .catch(err => response.json(err))
+}
+
   update = (req, res) => {
     const { id } = req.params;
     Room.findOneAndUpdate(
