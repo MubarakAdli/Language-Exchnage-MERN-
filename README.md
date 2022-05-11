@@ -33,7 +33,7 @@ make an edit or delete the language.
 7. user will be able to:
 * Home page: display all added languages from admins and search for specific 
 language. 
-8. * Contact other users: the user can choose a certain language and start a chat 
+* Contact other users: the user can choose a certain language and start a chat 
 with other users who speaks this language. 
 * Edit his own profile: This page has the details of users and the languages that 
 he learned.
@@ -46,13 +46,17 @@ section.
 And all process and task management can be seen and managed on our Trello account
 https://trello.com/b/IswN3k9M/language-exchange
 # Technologies:
-1. Java Spring
-2. BootStrap
-3. Java Script
-4. JQuery
-5. Fontawsome
-6. CSS
-7. MySQL
+1. HTML
+2. CSS
+3. MongoDB
+4. Bootstrap
+5. font awesome
+6. Mongoose.
+7. Material UI
+8. Socket io
+9. Express.
+10. JavaScript.
+11. Authorization and Authentication using json web tokens
 # Layout:
 ![This is an image](./pictures/picture%201.PNG)
 ![This is an image](./pictures/picture%202.PNG)
