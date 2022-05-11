@@ -11,6 +11,7 @@ import { createContext, useState, useEffect } from 'react'
 
 
 import React from 'react';
+// import AdminRoute from './components/AdminRoute';
 
 export const UserContext = createContext()
 
@@ -29,9 +30,10 @@ function App() {
       <BrowserRouter>
       <Routes>
       <Route path="/" element={<SignIn />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route path="/profile" element={<Profile />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      {/* <Route path="/Addin" element={<AdminRoute />} /> */}
       <Route path="/Addin" element={<Addin />}></Route>
       <Route path="/Edit" element={<Edit />}></Route>
       <Route path="/chat/:id" element={<Chatme />}></Route>

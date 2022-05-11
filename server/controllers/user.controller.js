@@ -14,8 +14,9 @@ class UserController {
     const { firstName, lastName, email, nativeLang, password, confirm } =
       req.body;
 
+      
 
-    console.log(users)
+    // console.log(users)
 
       // console.log("ay eshi")
       User.create({ firstName, lastName, email, nativeLang, password, confirmPass: confirm, admin: users.length === 0 })
@@ -65,10 +66,17 @@ class UserController {
       maxAge: 0
     }).json({ msg: "ok" })
   }
-    EditUser = (request, response) => {
-    Person.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
-        .then(updatedPerson => response.json(updatedPerson))
-        .catch(err => response.json(err))
+
+
+    EditUser(req,res)  {
+      const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
+      console.log(decodedJWT)
+      User.findOneAndUpdate({_id: decodedJWT.payload._id}, req.body, {new:true})
+         .then(user => res.json(user))
+         .catch(err => res.status(400).json(err))
+
+      
+  
 }
 
 

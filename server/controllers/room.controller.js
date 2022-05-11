@@ -18,16 +18,19 @@ class RoomController {
       .catch(err => res.json(err));
   }
 
-  delete = (req, res) => {
-    const { id } = req.params;
-    Room.deleteOne({
-      _id: id,
-    })
-      .then((rooms) => res.json(rooms))
-      .catch((err) => {
-        res.status(400).json(err);
-      });
-  };
+  getRoom= (request, response) => {
+    Room.findOne({_id:request.params.id})
+        .then(room => response.json(room))
+        .catch(err => response.json(err))
+}
+
+  delete (request, response) {
+    const {id} =request.params ;
+    Room.deleteOne({_id:id})
+
+        .then(deleteConfirmation => response.json(deleteConfirmation))
+        .catch(err => response.json(err))
+}
 
   getRoom = (request,response) => {
     const { id } = request.params.id;
